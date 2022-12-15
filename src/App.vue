@@ -3,9 +3,9 @@
     <div class="card-imc">
       <div class="row">
         <input
-          v-model="massa"
+          v-model="peso"
           type="number"
-          placeholder="Massa"
+          placeholder="Peso"
           maxlength="10"
           autofocus
         />
@@ -20,8 +20,8 @@
       </div>
       <button class="calc" @click="calcImc">Calcular</button>
 
-      <p>IMC: {{ imc }}</p>
-      <p class=" obs" style="display: none;">OBS: {{ obs }}</p>
+      <p class="imc" style="display: none;">SEU IMC: {{ imc }}</p>
+      <p class="obs" style="display: none;">{{ obs }}</p>
     </div>
     <tabela-imc></tabela-imc>
   </div>
@@ -30,7 +30,6 @@
 <script>
 import TabelaImc from './components/TabelaImc.vue';
 
-
 export default {
   components: { 
     TabelaImc 
@@ -38,22 +37,35 @@ export default {
   
   data() {
      return{
-      massa: "",
+      peso: "",
       altura: "",
       imc: "",
       obs: "",
     };
   },
-  methods: {
-    calcImc() {
   
-      if(this.massa === "") document.querySelector('.obs').style.display = "block", this.obs = "";
+  methods: {
 
-      else if(this.altura === "") this.obs = ""
-   
-
-      this.imc = (this.massa / (this.altura * this.altura)).toFixed(2);
+    calcImc() {
+      this.imc = (this.peso / (this.altura * this.altura)).toFixed(2),
+      document.querySelector('.imc').style.display = "block"
       this.showObs(this.imc);
+
+
+      if((this.peso === "") + (this.altura === ""))  (this.altura === ""),
+      document.querySelector('.obs').style.display = "block",
+      document.querySelector('.imc').style.display = "none",
+      document.querySelector('.magreza').style.background = "transparent",
+      document.querySelector('.normal').style.background = "transparent", 
+      document.querySelector('.sobrepeso').style.background = "transparent",
+      document.querySelector('.obesidade').style.background = "transparent",
+      document.querySelector('.obesidadeGrave').style.background = "transparent",
+      this.obs = "Todos os campos devem ser preenchidos";
+
+
+      else (this.peso === "") + (this.altura === ""), 
+      document.querySelector('.obs').style.display = "none";
+
     },
     showObs(imc) {
       if (this.imc < 18.5) document.querySelector('.magreza').style.background = "red",
