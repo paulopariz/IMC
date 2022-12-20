@@ -6,11 +6,11 @@
       <div class=" calcular">
         <div class="d-grid">
 
-          <input v-model="peso" type="number" placeholder="Peso" maxlength="10" autofocus />
+          <input @keyup.enter="calcImc" v-model="peso" type="number" placeholder="Peso" maxlength="10" autofocus />
 
-          <input v-model="altura" type="number" placeholder="Altura" maxlength="10" />
+          <input @keyup.enter="calcImc" v-model="altura" type="number" placeholder="Altura" maxlength="10" />
 
-          <button class="calc btn text-white mt-3" @click="calcImc">Calcular</button>
+          <button @click="calcImc" class="calc btn text-white mt-3" >Calcular</button>
 
           <div>
             <p class="obs">{{ obs }}</p>
